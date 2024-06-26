@@ -1,0 +1,29 @@
+<p *ngIf="orderId<=0"><em>Loading...</em></p>
+
+<div *ngIf="orderId>0">
+    <div class="card mb-2">
+        <div class="card-header">
+            <b>VERIFY</b>
+        </div>
+        <div class="card-body">
+            <p class="num2words"> <b>AMOUNT DUE:</b></p>
+            <p><b class="bigPrice" style="color: red">{{ total | numberToWords |titlecase }} Naira only</b></p>
+            <form>
+                <label for="gsm"><span class="required">*</span>Please confirm the amount due on delivery below, in numbers.</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">₦</div>
+                    </div>
+                    <input type="text" class="form-control" [(ngModel)]="price" placeholder="E.g. 94999" type="text"
+                        class="form-control" maxlength="10"/>
+                    <!-- <span *ngIf="f.price.errors.pattern" class="invalid-feedback">PLEASE CONFIRM THE AMOUNT DUE!</span> -->
+                    <!-- <div *ngIf="submitted && f.price.errors.required" class="invalid-feedback">
+                        <span *ngIf="f.price.errors.required">{{ Error }}</span>
+                    </div> -->
+                </div>
+                <button type="submit" class="btn btn-success mt-2" (click)="completeOrder()"> Confirm</button>
+            </form>
+
+        </div>
+    </div>
+</div>

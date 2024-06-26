@@ -1,0 +1,126 @@
+<div class="container mb-5">
+  <!-- <div class="col-md-6 col-lg-6 col-sm-12 my-1">
+      <a mat-button [matMenuTriggerFor]="categorymenu"><mat-icon>arrow_drop_down_circle</mat-icon> Select Category</a>
+      <mat-menu #categorymenu="matMenu">
+        <mat-nav-list>
+          <mat-list-item *ngFor="let DeptGrp of deptGrplist">
+            <a [routerLink]="['/category1',DeptGrp.destinationUrl]" class="filter"
+              (click)="sendFilterClickEvent('department')">{{ DeptGrp.description }} ({{ DeptGrp.totalCount }})</a>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-menu>
+    </div> -->
+
+  <!-- <button class="btn btn-sm btn-secondary" (click)="openPopup()">Filter</button>
+  <div class="mt-2" [ngStyle]="{'display':displayStyle}">
+    <div class="row mb-5 bg-light">
+      <div class="col-md-4 col-lg-4 col-6 my-1">
+        <a mat-button [matMenuTriggerFor]="sizemenu"><mat-icon>expand_more</mat-icon>
+          Select Size</a>
+        <mat-menu #sizemenu="matMenu">
+          <div *ngFor="let SizeGrp of sizeGrplist">
+            <a mat-menu-item [routerLink]="['/category1',SizeGrp.destinationUrl]" queryParamsHandling="merge"
+              class="filter" (click)="sendFilterClickEvent('size')">{{ SizeGrp.sizeDesc }} ({{ SizeGrp.totalcount
+              }})</a>
+
+          </div>
+        </mat-menu>
+      </div>
+      <div class="col-md-4 col-lg-4 col-6 my-1">
+        <a mat-button [matMenuTriggerFor]="colormenu"><mat-icon>expand_more</mat-icon>
+          Select Color</a>
+        <mat-menu #colormenu="matMenu">
+          <div *ngFor="let ColorGrp of colorGrplist">
+            <a mat-menu-item [routerLink]="['/category1',ColorGrp.destinationUrl]" queryParamsHandling="merge"
+              class="filter" (click)="sendFilterClickEvent('color')">{{ ColorGrp.colorDesc }} ({{ ColorGrp.totalcount
+              }})</a>
+
+          </div>
+        </mat-menu>
+      </div>
+      <div class="col-md-4 col-lg-4 col-6 my-1">
+        <a mat-button [matMenuTriggerFor]="stylemenu"><mat-icon>expand_more</mat-icon>
+          Select Style</a>
+        <mat-menu #stylemenu="matMenu">
+          <div *ngFor="let StyleGrp of styleGrplist">
+            <a mat-menu-item [routerLink]="['/category1',StyleGrp.destinationUrl]" queryParamsHandling="merge"
+              class="filter" (click)="sendFilterClickEvent('style')">{{ StyleGrp.styleDesc }} ({{ StyleGrp.totalcount
+              }})</a>
+
+          </div>
+        </mat-menu>
+      </div>
+      <div *ngIf="heelGrplist.length>0" class="col-md-4 col-lg-4 col-6 my-1">
+        <a mat-button [matMenuTriggerFor]="heelmenu"><mat-icon>expand_more</mat-icon>
+          Heel Height</a>
+        <mat-menu #heelmenu="matMenu">
+          <div *ngFor="let heel of heelGrplist">
+            <a mat-menu-item [routerLink]="['/category1',heel.destinationUrl]" queryParamsHandling="merge"
+              class="filter" (click)="sendFilterClickEvent('heel')">{{ heel.heelHeightDesc }} ({{ heel.totalcount
+              }})</a>
+          </div>
+        </mat-menu>
+      </div>
+      <div class="col-md-4 col-lg-4 col-6 my-1">
+        <a mat-button [matMenuTriggerFor]="materialmenu"><mat-icon>expand_more</mat-icon>
+          Select Material</a>
+        <mat-menu #materialmenu="matMenu">
+          <div *ngFor="let mat of materialGrplist">
+            <a mat-menu-item [routerLink]="['/category1',mat.destinationUrl]" queryParamsHandling="merge" class="filter"
+              (click)="sendFilterClickEvent('material')">{{ mat.materialDesc }} ({{ mat.totalcount }})</a>
+          </div>
+        </mat-menu>
+      </div>
+      <div class="col-md-4 col-lg-4 col-6 my-1">
+        <a mat-button [matMenuTriggerFor]="sortmenu"><mat-icon>expand_more</mat-icon> Sort Results By:</a>
+        <mat-menu #sortmenu="matMenu">
+          <div class="m-2 p-2">
+            <a [routerLink]="['/category1', urlId, 2]" class="filter" (click)="sendFilterClickEvent('high_price')">High
+              Price</a><br />
+            <a [routerLink]="['/category1', urlId, 3]" class="filter" (click)="sendFilterClickEvent('low_price')">Low
+              Price</a><br />
+            <a [routerLink]="['/category1', urlId, 5]" class="filter"
+              (click)="sendFilterClickEvent('title')">Title</a><br />
+            <a [routerLink]="['/category1', urlId, 0]" class="filter"
+              (click)="sendFilterClickEvent('popular')">Popular</a><br />
+            <a [routerLink]="['/category1', urlId, 7]" class="filter"
+              (click)="sendFilterClickEvent('newest')">Newest</a><br />
+            <a [routerLink]="['/category1', urlId, 4]" class="filter"
+              (click)="sendFilterClickEvent('randomly')">Randomly</a> <br>
+          </div>
+        </mat-menu>
+      </div>
+    </div>
+  </div> -->
+  <!-- Product category rearrangement -->
+  <div class="chips-container">
+    <a>Filters</a>
+    <mat-chip-list class="my-2">
+      <div class="chip-row" *ngFor="let StyleGrp of styleGrplist; let i = index;">
+        <mat-chip class="custom-chip" [ngClass]="{ 'selected-chip': selectedStyleIndex === i }"
+          (click)="toggleChipSelection(i)">
+          <btn [routerLink]="['/category1', StyleGrp.destinationUrl]" queryParamsHandling="merge">
+            {{ StyleGrp.styleDesc }} ({{ StyleGrp.totalcount }})
+          </btn>
+        </mat-chip>
+      </div>
+    </mat-chip-list>
+    <a>Sort by</a>
+  </div>
+
+  <h3 *ngIf="title">Showing results for {{title}}</h3>
+  <p *ngIf="!prodlists"><em>Loading...</em></p>
+
+  <div class="row row-cols-md-3 row-cols-sm-12">
+    <div *ngIf="!prodlists" class="d-flex justify-content-center spinner-border text-dark" role="status">
+      <span class="visually-hidden"> <em>Loading...</em> </span>
+    </div>
+    <div class="col" *ngFor="let Prodlist of prodlists">
+      <single-prod [Prodlist]="Prodlist"></single-prod>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button mat-raised-button class="btn-w-md" color="primary" (click)="loadMore()" [disabled]="disableLoadMoreButton">
+      Load More Available Products</button>
+  </div>
+</div>

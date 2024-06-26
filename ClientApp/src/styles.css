@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+
+/* 
+html, body { height: 100%; }
+body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+*/
+/* #container {
+  width: 100%;
+  margin: 0 auto;
+  background-color: transparent;
+  position: relative;
+  padding: 0px,10px 5px 10px;
+  bottom: 0;
+  margin-bottom: 0;
+}  */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+html, body { height: 100%; }
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; */
+}
+
+.foot{
+  margin-top: auto;
+  bottom: 0;
+}
+mat-progress-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+/* .cookiesConsent{
+background-color: black;
+color: #fff;
+text-align: center;
+position: -webkit-sticky;
+position: sticky;
+bottom: 0;
+margin:0;
+} */
+app-cookie-consent{
+  z-index: 8;
+  position: sticky;
+  position: -webkit-sticky;
+  display: block;
+  bottom:0;
+  margin-top: 0;
+  }
+
+  app-nav-menu{
+    z-index: 9;
+    width: 100%;
+    /* position: -webkit-sticky; */
+    position: fixed;
+    top: 0;
+  }
+  .new {
+    margin-top: 100px;
+  }

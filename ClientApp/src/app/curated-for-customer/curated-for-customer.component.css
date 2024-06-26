@@ -1,0 +1,136 @@
+  .container {
+    min-height: 100vh;
+  }
+
+  button {
+    margin: 3px !important;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    padding: 0%;
+  }
+
+  .card-img-actions {
+    position: relative;
+    flex: 1 1 auto;
+    margin: auto;
+    padding: 0%;
+  }
+
+  .card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    clear: both;
+    /* padding: 1.25rem; */
+  }
+
+  .card-body a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  .card-body a:hover {
+    text-decoration: underline;
+    color: #000;
+  }
+
+  .card {
+    padding: 0%;
+    width: 100%;
+    max-height: fit-content;
+    min-height: 480px;
+    margin-right: 2px;
+    min-width: 300px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.1875rem;
+  }
+
+  .card:hover {
+    border-color: #eee;
+    box-shadow: 0 0 11px #888;
+    -moz-box-shadow: 0 0 11px #888;
+    -khtml-box-shadow: 0 0 11px #888;
+    -webkit-box-shadow: 0 0 11px #888;
+    -o-box-shadow: 0 0 11px #888;
+    -ms-box-shadow: 0 0 11px #888;
+  }
+
+  .currency {
+    font-size: 15pt;
+    color: orangered;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .iK {
+    max-height: 100px;
+  }
+
+  .view{
+    color: white;
+  }
+
+  @media only screen and (max-width: 990px) {
+    .card {
+      margin: auto;
+      width: auto;
+      max-width: 400px;
+      min-width: 300px;
+    }
+
+    .card-img {
+      margin: 0px;
+    }
+
+    .producttitle {
+      color: #c54e46;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 11px;
+    }
+
+    .imagetoorder {
+      text-decoration: none;
+    }
+
+    a.filter:link {
+      text-decoration: none;
+      color: black;
+      font-size: 10pt;
+      font-weight: normal;
+    }
+
+    a.filter:visited {
+      text-decoration: none;
+      color: black;
+      font-size: 10pt;
+      font-weight: normal;
+    }
+
+    a.filter:hover {
+      text-decoration: underline;
+      color: blue;
+      font-size: 10pt;
+      font-weight: normal;
+    }
+
+    a.filter:active {
+      text-decoration: none;
+      color: black;
+      font-size: 10pt;
+      font-weight: normal;
+    }
+
+
+  }

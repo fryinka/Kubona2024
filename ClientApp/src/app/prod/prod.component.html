@@ -1,0 +1,27 @@
+<div class="card mb-2">
+  <div class="card-img-actions">
+    <a [routerLink]="['/product', Prodlist.destinationUrl]"  (click)="sendProductClickEvent(Prodlist.destinationUrl)">
+      <picture>
+        <source media="(min-width: 600px )" srcset="">
+        <source media="(min-width: 601px) and (max-width: 1200px)" srcset="">
+        <img *ngIf="Prodlist.image1Url.length > 0" class="card-img img-fluid" [src]="Prodlist.image1Url" [alt]="Prodlist.title" />
+      </picture>
+    </a>
+  </div>
+  <div class="card-body mb-0">
+    <a [routerLink]="['/product', Prodlist.destinationUrl]"  (click)="sendProductClickEvent(Prodlist.destinationUrl)"> <span class="producttitle">{{Prodlist.title}}</span></a>
+    <br />
+    <div class="my-0">
+      <span class="oldPrice"><s>{{Prodlist.storePrice | currency:'₦' :'symbol':'3.2'}}</s></span>&nbsp;&nbsp;
+      <span class="currency ">{{Prodlist.internetPrice | currency:'₦' :'symbol':'3.2'}}</span>
+    </div><br />
+    <div class="my-0 iK">
+      <span class="availableIn my-0" *ngIf="Prodlist.sizeDesc"> <span class="availableInBold">Available in</span> {{Prodlist.sizeDesc}}</span>
+      <p></p>
+      <span class="availableIn my-0" *ngIf="otherColors.length>0" > <span class="availableInBold">Other Colors: </span> <ng-container *ngFor="let a of otherColors"> {{a.title}}, </ng-container></span>
+      <div class="mt-2">
+        <a [routerLink]="['/product', Prodlist.destinationUrl]" style="color: white;" class="btn btn-sm btn-success"(click)="sendProductClickEvent(Prodlist.destinationUrl)">More Details </a> 
+      </div>
+    </div>
+  </div>
+</div>

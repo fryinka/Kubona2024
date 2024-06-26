@@ -1,0 +1,86 @@
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+.sizeguide {
+  float: right;
+}
+
+.sizeguide:hover {
+  cursor: pointer;
+}
+
+.title {
+  white-space: normal;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.availablesizes {
+  font-size: 10px;
+  font-weight: bold;
+  color: red;
+}
+
+.currency {
+  float: right;
+  font-size: 15pt;
+  color: black;
+  font-weight: bold;
+  text-align: justify;
+}
+
+.oldPrice {
+  font-size: 12pt;
+  float: left;
+  text-decoration: line-through;
+  color: #000;
+  font-weight: 700;
+}
+
+.currencycenter {
+  float: none;
+  font-size: 15pt;
+  color: orangered;
+  font-weight: bold;
+  text-align: center;
+}
+
+.mat-select-content {
+  min-width: 250px;
+  max-width: 350px;
+}
+
+.errortext {
+  color: #ff0000;
+}
+
+.clsHeight{
+height: 250px;
+}
+
+@media screen and (max-width: 600px) {
+
+  .descTerms {
+    margin: 0px;
+    line-height: 20px;
+    font-weight: normal;
+    font-size: 10pt;
+    background-color: antiquewhite;
+    color: black;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .btn-success {
+    width: 250px; 
+    margin: 0 auto;
+  }
+}

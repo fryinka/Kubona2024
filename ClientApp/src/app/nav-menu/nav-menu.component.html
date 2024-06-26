@@ -1,0 +1,54 @@
+<header>
+  <nav class="d-flex justify-content-around bg-dark upperNav"> <p class="mt-1 mb-0 mobile"><small>Premium Lifestyle</small></p> <p class="mt-1 mb-0"> <small>WHATSAPP 07036110000</small></p> <span class="mt-2 mb-0"><a [routerLink]="['/whatsapp']"><mat-icon matBadge= "{{cartlist.length + badgeCounter$}}">shopping_cart</mat-icon></a></span></nav>
+  <div class="navBorder mb-5">
+  <table width="100%" class="bg-white">
+    <tr><td>
+  <a class="navbar-brand" [routerLink]="['/']"><img src="../../assets/Kubona150.png" width="75px" alt="kubona.ng" /></a>
+</td>
+    <td style="width:25px;">&nbsp;</td>
+    <td>
+      <div>
+        <a mat-button [matMenuTriggerFor]="menshoesmenu"><mat-icon>expand_more</mat-icon>MEN</a>
+        <mat-menu #menshoesmenu="matMenu" class="p-2">
+          <div *ngFor="let sc of mnsubCat; let i=index" class="my-1">
+            <a class="dropdown-item" [routerLink]="['/category',sc.destinationUrl]" *ngIf="i!=0">{{sc.description}} ({{sc.totalCount}})</a>
+          </div>
+          <mat-divider></mat-divider>
+          <a class="dropdown-item my-1" [routerLink]="['/category','70610-Men-Shoes']">All Men Shoes</a>
+          <mat-divider></mat-divider>
+          <a class="dropdown-item my-1" [routerLink]="['/category','70610-Men-Shoes','7']">NewlyArrived</a>
+          <mat-divider></mat-divider>
+          <a class="dropdown-item my-1" [routerLink]="['/category','70340-Accessories']">Accessories</a>
+          <mat-divider></mat-divider>
+          <a class="dropdown-item my-1" [routerLink]="['/history']">My Browsing History</a>
+          <!--<mat-divider></mat-divider>
+          <a class="dropdown-item" [routerLink]="['/orderhistory']">My Order History</a>-->
+        </mat-menu>
+      </div>
+     </td>
+    <td>
+      <div>
+        <a mat-button [matMenuTriggerFor]="womenshoesmenu"><mat-icon>expand_more</mat-icon>WOMEN</a>
+        <mat-menu #womenshoesmenu="matMenu" class="p-2">
+          <div *ngFor="let sc of wnsubCat; let i=index" class="my-1">
+            <a class="dropdown-item" [routerLink]="['/category',sc.destinationUrl]" *ngIf="i!=0">{{sc.description}} ({{sc.totalCount}})</a>
+          </div>
+          <mat-divider></mat-divider>
+          <a class="dropdown-item my-1" [routerLink]="['/category','70710-Women-Shoes']">All Women Shoes</a>
+          <mat-divider></mat-divider>
+          <a class="dropdown-item my-1" [routerLink]="['/category','70710-Women-Shoes','7']">NewlyArrived</a>
+          <mat-divider></mat-divider>
+          <a class="dropdown-item my-1" [routerLink]="['/category','70340-Accessories']">Accessories</a>
+          <mat-divider></mat-divider>
+          <a class="dropdown-item my-1" [routerLink]="['/history']">My Browsing History</a>
+          <!--<mat-divider></mat-divider>
+          <a class="dropdown-item" [routerLink]="['/orderhistory']">My Order History</a>-->
+        </mat-menu>
+      </div>
+    </td>
+    <td style="width:100px;">&nbsp;</td>
+    </tr>
+  </table>
+  </div>
+</header>
+

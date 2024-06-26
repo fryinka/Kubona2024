@@ -1,0 +1,63 @@
+<p *ngIf="!cartlist"><em>Loading...</em></p>
+
+<div *ngIf="cartlist.length > 0">
+  <div class="card mb-3">
+    <div class="card-header"><b>CONNECT TO OUR WHATSAPP</b></div>
+    <div class="card-body">
+      <div class="title">Your order ID is: {{ activeOrder.orderId }}</div>
+      <br />
+      <div>
+        <p>You have ordered <b>{{ cartlist.length }}</b> item(s). Your total due on or before delivery is <b style="color: red">{{ total | currency: "₦":"symbol":"3.0" }}</b>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" *ngFor="let cartItem of cartlist">
+    <app-cart-item [cartItem]="cartItem"></app-cart-item>
+    <div class="card-footer">
+      <button class="btn btn-danger btn-sm" (click)="deleteItemInCart(cartItem.orderItemId)"><i class="fa fa-trash-o"></i>Delete</button>
+    </div>
+  </div>
+
+  <div class="currencytext18 totalpadding">
+    Total Due: {{ total | currency: "₦":"symbol":"3.0" }}
+  </div>
+
+  <div class="card my-3">
+    <div class="card-header">
+        <b><small>Please enter your WhatsApp phone number and click the button below to submit your order to our WhatsApp phone.</small></b>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="completeOrder()" [formGroup]="cartForm">
+          <div class="form-group">
+            <label for="gsm"><span class="required">*</span><b>Your WhatsApp Number Below?</b></label>
+            <input placeholder="E.g. 08091234567" type="text" class="form-control" formControlName="gsm"[ngClass]="{'is-invalid': (submitted && f.gsm.errors)}" maxlength="11" required/>
+          <span *ngIf="f.gsm.errors.pattern" class="invalid-feedback">PLEASE ENTER A VALID 11 DIGIT MOBILE NUMBER</span>
+          <div *ngIf="submitted && f.gsm.errors.required" class="invalid-feedback">
+            <span *ngIf="f.gsm.errors.required">{{ Error }}</span>
+            <input type="hidden" formControlName="gclid" [value]="g_clid">
+            <input type="hidden" formControlName="fbclid" [value]="fb_clid">
+          </div>
+        </div>
+          <button type="submit" class="btn btn-success btn-block mt-2"><mat-icon>add_shopping_cart</mat-icon> Submit via WhatsApp</button>
+        </form>
+      </div>
+  </div>
+</div>
+
+
+<!-- <h3>Update Heel Height</h3>
+<label for="dept">Select Heel Height:</label>
+<select (change)="getHeel($event)">
+  <ng-container *ngFor="let item of heelList">
+    <option value="{{item.heelHeightId}}">{{item.desc}}</option>
+  </ng-container>
+</select>
+<br>
+
+<form>
+  <label for="products">Enter IDs of Products to Update Separted by Commas ","</label><br>
+  <textarea rows="7" width="250" [(ngModel)]="productIds" name="myString"></textarea><br>
+  <button class="btn btn-primary" (click)="updateHeelHeight()">Update</button><br>
+</form>
+<p *ngIf="isUpdated" class="bg-warning"> Total Updated is {{isUpdated}}</p> -->

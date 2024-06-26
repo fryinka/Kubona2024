@@ -1,0 +1,25 @@
+.arrow {
+  align-content: center;
+  align-items: center;
+}
+
+.big {
+  font-size: x-large;
+  text-align: center;
+}
+
+.convert {
+  flex-direction: column;
+}
+
+.main {
+  flex: content;
+  /* max-width: 750px; */
+  align-content: center;
+}
+
+.title {
+  white-space: normal;
+  font-size: 13px;
+  font-weight: bold;
+}

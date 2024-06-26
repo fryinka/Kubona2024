@@ -1,0 +1,40 @@
+
+<footer id="myFooter" class="foot">
+    <div class="container-fluid">
+        <div class="row text-center">
+          <div class="col-12 col-sm-6 col-md-3">
+            <h1 class="logo" style="margin-top: 30px">
+              <a routerLink="/">&nbsp;<img src="../../assets/Kubona-white.png" alt="">&nbsp;</a>
+            </h1>
+          </div>
+          <div class="col-12 col-sm-6 col-md-2">
+            <ul>
+              <li><a [routerLink]="['/about']">About Us</a></li>
+              <li><a [routerLink]="['/contact']">Contact Us</a></li>
+              <li><a [routerLink]="['/vacancies']">Vacancies</a></li>
+            </ul>
+          </div>
+          <div class="col-12 col-sm-6 col-md-2">
+            <ul>
+              <li><a [routerLink]="['/delivery']">Delivery Info<br /></a></li>
+              <li><a [routerLink]="['/faq']">FAQ</a></li>
+              <li><a [routerLink]="['/exchange']">Returns & Exchanges</a></li>
+              <li><a [routerLink]="['/howitworks']">How to place an order</a></li>
+              <li><a [routerLink]="['/sizehowto']">How to check your size</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-6 col-md-2">
+            <ul>
+              <li><a [routerLink]="['/paymentoptions']">Payment Options</a></li>
+              <li><a [routerLink]="['/privacy']">Privacy</a></li>
+              <li><a [routerLink]="['/terms']">Terms<br /></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row footer-copyright text-center">
+          <div class="col">
+            <p> &copy;{{currentDateTime | date:"yyyy"}} &nbsp;Kubona. All rights reserved.</p>    <!-- Modified this line -->
+          </div>
+        </div>
+      </div>
+</footer>

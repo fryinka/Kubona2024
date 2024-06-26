@@ -1,0 +1,110 @@
+<p *ngIf="!cartlist"><em>Loading...</em></p>
+
+<div *ngIf="cartlist.length>0">
+  <div class="card mb-2">
+    <div class="card-header">
+      <b>AMOUNT DUE: </b>
+    </div>
+    <div class="card-body">
+      <p><b class="bigPrice" style="color: red">{{ total | currency: "₦":"symbol":"3.2" }}</b></p>
+      <p class="num2words"> <b>({{ total | numberToWords |titlecase }} Naira only)</b></p>
+    </div>
+  </div>
+  <div class="card mb-2">
+    <div class="card-header">
+      <b>ITEMS ORDERED: {{cartlist.length}} items - (OrderId - {{activeOrder.orderId}})</b>
+    </div>
+    <div class="card-body">
+      <div class="cart-items">
+        <ng-container *ngFor="let cartItem of cartlist; let i=index;">
+          <table class="orderTable mb-1">
+            <tr>
+              <td rowspan="3">{{i+1}}</td>
+              <td rowspan="2">
+                <div class="card-img">
+                  <img src="{{ cartItem.mobileImageUrl }}" alt="{{ cartItem.title }}" class="img" />
+                </div>
+              </td>
+              <td style="width:15px" rowspan="3"></td>
+              <td>Size: <b>{{cartItem.size}}</b></td>
+            </tr>
+            <tr>
+              <td>Color: <b>{{cartItem.color}}</b></td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-danger btn-sm" (click)="deleteItemInCart(cartItem.orderItemId)">Remove</button>
+              </td>
+              <td>Price: <b>{{cartItem.internetPrice | currency: "₦":"symbol":"3.2"}}</b></td>
+            </tr>
+          </table>
+        </ng-container>
+      </div>
+    </div>
+    <div class="card-footer"><a [routerLink]="['/cartrecommend']" class="btn btn-outline-secondary btn-sm">ADD MORE
+        ITEMS</a></div>
+  </div>
+  <div class="card mb-2">
+    <div class="card-header">
+      <b>COMPLETE PURCHASE VIA WHATSAPP</b>
+    </div>
+    <div class="card-body">
+    <form (ngSubmit)="completeOrder()" [formGroup]="cartForm">
+      <!-- <p>Please select the best option for your order, enter your WhatsApp phone number and click the button below to submit your order to our WhatsApp phone.</p> -->
+      <div>
+        <label for="gsm"><span class="required">*</span><b>Please select the best option for your order below:</b></label>
+      
+        <div class="form-check mt-2">
+          
+          <div class="form-check-item mb-2">
+            <input class="form-check-input" type="radio" name="paymentOption" [id]="paymentOption3" [value]="102" formControlName="paymentOption">
+            <label for="paymentOption3">How much is it? Is it {{total/10 | currency: "₦":"symbol":"3.2"}} Please assist.</label>
+          </div>
+          
+          <div class="form-check-item mb-2">
+            <input class="form-check-input" type="radio" name="paymentOption" [id]="paymentOption1" [value]="100" formControlName="paymentOption">
+            <label for="paymentOption1">I'm interested but will order later.</label>
+          </div>
+                             
+          <div class="form-check-item mb-2">
+            <input class="form-check-input" type="radio" name="paymentOption" [id]="paymentOption4" [value]="103" formControlName="paymentOption">
+            <label for="paymentOption4">I need information on something else.</label>
+          </div>
+
+          <div class="form-check-item mb-2">
+            <input class="form-check-input" type="radio" name="paymentOption" [id]="paymentOption2" [value]="101" formControlName="paymentOption">
+            <label for="paymentOption2">I want to pay {{total | currency: "₦":"symbol":"3.2"}} on delivery</label>
+          </div>
+        </div>    
+        <div *ngIf="submitted && cartForm.get('paymentOption').invalid">
+          <small class="text-danger">PLEASE SELECT AN OPTION ABOVE</small>
+        </div>
+      </div>
+        <div class="mt-3">
+          <label for="gsm"><span class="required">*</span><b>Please enter your WhatsApp number below:</b></label>
+        
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">+234</div>
+          </div>
+          <input type="text" class="form-control" placeholder="E.g. 08091234567" formControlName="gsm"
+            [ngClass]="{'is-invalid': (submitted && f.gsm.errors)}" pattern="^(0[7-9]|7|8|9)[0-9]{9}$" required
+            maxlength="11" />
+          <span *ngIf="f.gsm.errors?.pattern && f.gsm.value.startsWith('0')" class="invalid-feedback">
+            PLEASE ENTER A VALID PHONE NUMBER STARTING WITH 0
+          </span>
+          <span *ngIf="f.gsm.errors?.pattern && !f.gsm.value.startsWith('0')" class="invalid-feedback">
+            PLEASE ENTER A VALID PHONE NUMBER
+          </span>
+          <span *ngIf="f.gsm.errors?.required" class="invalid-feedback">
+            PLEASE ENTER A PHONE NUMBER
+          </span>
+          <input type="hidden" formControlName="gclid" [value]="g_clid">
+          <input type="hidden" formControlName="fbclid" [value]="fb_clid">
+        </div>
+        </div>
+        
+        <button type="submit" class="btn btn-success mt-2"><mat-icon>add_shopping_cart</mat-icon> Submit via WhatsApp</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<p *ngIf="!menulinks"><em>Loading...</em></p>
+
+
+  <ul class="list-group list-group-flush list-style" *ngFor="let item of menulinks">
+    <li class="list-group-item"><mat-icon>arrow_right</mat-icon>&nbsp;<a class="card-link" [routerLink]="[item.routeUrl,item.routeId]"  (click)="sendItemClickEvent(item.shortTitle)">{{ item.shortTitle }}</a></li>
+  </ul>

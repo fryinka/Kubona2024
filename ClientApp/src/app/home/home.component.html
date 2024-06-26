@@ -1,0 +1,37 @@
+<p *ngif="!frontpageImages" class="spinner-border text-dark" role="status"><em>Loading Kubona...</em></p>
+<mat-grid-list cols="{{cols}}" rowHeight="350px" gutterSize="5px" class="grid-layout">
+  <mat-grid-tile *ngFor="let FrontPageImageRotator of frontpageImages">
+    <div class="each_homeproducts">
+      <div>
+        <a [routerLink]="[FrontPageImageRotator.routeUrl,FrontPageImageRotator.routeId]"  (click)="sendWidgetClickEvent(FrontPageImageRotator.imageTitle)">
+          <img mat-card-image fetchpriority="high" src="{{ FrontPageImageRotator.imageurl }}" alt="{{ FrontPageImageRotator.imageTitle }}" width="312" height="217" />
+          </a>
+      </div>
+      <div class="homeproduct_details">
+        <div  class="card-bottom-margin">
+          <div>
+            <a [routerLink]="[FrontPageImageRotator.routeUrl,FrontPageImageRotator.routeId]" class="articletitle"  (click)="sendWidgetClickEvent(FrontPageImageRotator.imageTitle)">
+              {{FrontPageImageRotator.imageTitle}}
+            </a>
+          </div>
+        </div>
+        <div class="homeproduct_summary">{{ FrontPageImageRotator.summary }}</div>
+        <div class="homeproduct_viewdetailsmobile">
+          <a [routerLink]="[FrontPageImageRotator.routeUrl,FrontPageImageRotator.routeId]"  (click)="sendWidgetClickEvent(FrontPageImageRotator.imageTitle)">Shop Now</a>
+        </div>
+      </div>
+     
+     
+    </div>
+  </mat-grid-tile>
+
+</mat-grid-list>
+<div class="row">
+  <div class="col-12 mb-2 mt-5"><small>Kubona is a Premium fashion retail brand that serves as the recommended source of Premium items that empower our customers to express their life aspirations and accomplishments through fashion.</small></div>
+  <div class="cb col-12 mb-5"> 
+    <a [routerLink]="['/category', '70610-Men-Shoes']" (click)="sendBottomLinkEvent('men-shoes')">Shop Men Shoes</a><br>
+    <a [routerLink]="['/category', '70710-Women-Shoes']" (click)="sendBottomLinkEvent('women-shoes')">Shop Women Shoes</a><br>
+    <a [routerLink]="['/category', '70340-Assessories']"  (click)="sendBottomLinkEvent('accessories')">Shop Accessories</a> <br>
+  </div>
+</div>
+

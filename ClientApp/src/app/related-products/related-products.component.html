@@ -1,0 +1,14 @@
+<p *ngIf="!relatedProd"><em>Loading...</em></p>
+<div class="container">
+  <div class="row row-cols-auto">
+    <div  *ngFor="let item of relatedProd">
+      <div class="col"><a [routerLink]="['/product', item.urlId]" (click)="sendItemClickEvent(item.title, item.internetPrice)">
+  <figure class="text-center">
+    <img src="{{ item.imageUrl }}" alt="{{ item.title }}" /><br />
+   <figcaption class="currency">{{ item.internetPrice | currency:'₦' :'symbol':'3.2' }}</figcaption>
+</figure>
+</a></div>
+     
+ </div>
+  </div>
+  </div>

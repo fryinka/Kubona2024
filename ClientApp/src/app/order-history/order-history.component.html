@@ -1,0 +1,59 @@
+<div class="cust">
+  <div class="row">
+    <div class="text-center my-2"><b>Look up my Order(s)</b></div>
+  </div>
+  <div class="col-md-3 col-sm-12 mb-5">
+    <div class="input-group">
+      <input type="text" class="form-control-sm form-control rounded" placeholder="Your Order Id" [(ngModel)]="GSM" maxlength="11" />
+      <button type="button" class="btn btn-sm btn-primary" (click)="lookUp()">Look Up</button>
+    </div>
+  </div>
+  <!--<input type="text" [(ngModel)]="GSM" placeholder="OrderId" required>
+  <button (click)="lookUp()">Look up</button>-->
+  <p *ngIf="!orderHistory">No orders found for this number!</p>
+  <div class="row row-cols-md-4 row-cols-6">
+    <p *ngIf="!orderHistory"><em>Loading...</em></p>
+    <div class="col" *ngFor="let item of orderHistory">
+      <div class="card mb-2">
+        <div class="card-img-actions">
+          <a [routerLink]="['/product',item.productId]">
+            <img class="card-img img-fluid" [src]="item.imageUrl" [alt]="item.title" />
+            </a>
+        </div>
+        <div class="card-body mb-0">
+          <p> <span class="producttitle">{{item.title}}</span></p>
+          <div class="my-0">
+            <span class="currency">{{item.internetPrice | currency:'₦' :'symbol':'3.2'}}</span>
+          </div>
+          <div class="my-0 iK">
+            <div class="mt-0">
+              <ul>
+                <li><small>Invoice date: {{item.invoiceDate | date}} </small></li>
+                <li><small>Invoice Id: {{item.invoiceId}} </small></li>
+                <li><small>
+                    Invoice Status: <span *ngIf="item.invoiceStatus == 521">Delivered</span>
+                    <span *ngIf="item.invoiceStatus == 515">Shipped</span>
+                    <span *ngIf="item.invoiceStatus == 523 || item.invoiceStatus == 527">Cancelled</span>
+                    <span *ngIf="item.invoiceStatus == 509">Ready for Shipment</span>
+                    <span *ngIf="item.invoiceStatus == 525">Returned</span>
+                    <span *ngIf="item.invoiceStatus == 509">Rescheduled</span>
+                    <span *ngIf="item.invoiceStatus == 0">None</span>
+                    <span *ngIf="item.invoiceStatus == 501 || item.invoiceStatus == 503 || item.invoiceStatus == 505 || item.invoiceStatus == 507">Order Processing...</span>
+                  </small></li>
+                <li><small>Shipped date: {{item.shippedDate | date }}</small></li>
+              </ul>              
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+  <style>
+    .cust {
+      min-height: 500px;
+    }
+  </style>

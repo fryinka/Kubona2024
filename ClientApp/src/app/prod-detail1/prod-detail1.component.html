@@ -1,0 +1,139 @@
+<p *ngIf="!prodDetail"><em>Loading...</em></p>
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item text-center">
+      <div class="oldPrice">{{ prodDetail.storePrice | currency:'₦' :'symbol':'3.2'}}</div>
+      <div class="currency text-center">{{ prodDetail.internetPrice | currency:'₦' :'symbol':'3.2'}}</div>
+      <p class="num2words" style="font-size: smaller;"> <b>({{ prodDetail.internetPrice | numberToWords |titlecase }} Naira only)</b></p>
+    </li>
+    <li class="list-group-item">
+      <div class="card-img">
+        <ng-image-slider #nav [images]="prodImages" [infinite]="true" [autoSlide]="0"
+          [imageSize]="{width:250, height:250}" [animationSpeed]="1" slideImage="1"></ng-image-slider>
+      </div>
+    </li>
+  </ul>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div *ngIf="prodSizes.length > 0">
+        <strong>Available Sizes: </strong><span *ngFor="let SizeList of productSizes; let last = last">
+          <span *ngIf="SizeList.quantity > 0" style="color: orangered;">{{ SizeList.sizeDesc }}<span *ngIf="!last">, </span></span> 
+          <s style="color: darkgrey;" *ngIf="SizeList.quantity <= 0">{{SizeList.sizeDesc }}<span *ngIf="!last">, </span></s>
+        </span>
+
+        <small><a class="sizeguide" (click)="openPopup()">Size Guide</a></small>
+        <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <app-size-converter></app-size-converter>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="closePopup()">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <strong>Color: </strong> {{prodDetail.colorDesc}}
+      <div>
+        <other-colors [similarId]="prodDetail.similarId" [productId]="prodDetail.itemGroupId"></other-colors>
+      </div>
+    </li>
+  </ul>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="text-center">
+        <div class="my-2 currencycenter">
+          {{ prodDetail.internetPrice | currency:'₦' :'symbol':'3.2'}}
+        </div>
+        <div>
+          <form [formGroup]="addToOrderForm" (ngSubmit)="check()">
+            <div class="content-center" *ngIf="otherColors.length > 1">
+              <p class="small my-1"><b>Select Color: </b></p>
+              <div>
+                <div class="my-1">
+                  <mat-radio-group formControlName="color" required>
+                    <mat-radio-button class="m-1" *ngFor="let item of otherColors" [value]="item.productId" (click)="getProdSizes(item.productId)">
+                      {{ item.title }}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="my-1" *ngIf="prodSizes.length > 0">
+              <p class="small my-1"><b>Select Size: </b></p>
+              <div>
+                <div class="my-2">
+                  <mat-radio-group formControlName="size" required>
+                    <mat-radio-button class="m-1" *ngFor="let item of prodSizes" [value]="item.itemGroupSizeId" [disabled]="item.quantity<=0" >
+                      {{ item.sizeDesc }}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="prodSizes.length <= 0">
+              <mat-form-field class="mat-select-content hidden">
+                <mat-select [(ngModel)]="itemgroupSizeId" formControlName="size">
+                  <mat-option [value]="0" [selected]>
+                    {{ prodDetail.trackingId }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <hr>
+            <div class="content-center" *ngIf="prodDetail.numAvailable > 0">
+              <button type="submit" class="btn btn-success btn-block mt-2 mb-2 content-center" [disabled]="isDisabled">
+                BUY NOW
+              </button> <br>
+            </div>
+            <span class="mt-2 errortext" *ngIf="addToOrderForm.invalid">{{Error}}</span>
+            <div *ngIf="prodDetail.numAvailable <= 0">
+              <mat-label><b>PRODUCT IS NO LONGER AVAILABLE</b></mat-label>
+            </div>
+          </form>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="card-header">
+    <b>MORE PRODUCT INFORMATION</b>
+  </div>
+  <div class="card-body">
+    <div>{{ prodDetail.description }}</div>
+    <div class="d-flex justify-content-center my-2" *ngIf="prodDetail.youTubeId">
+      <hr />
+      <iframe width="250" height="158" [src]="youTubeId" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <hr />
+    </div>
+  </div>
+  <div class="card-header"><b>RELATED SUGGESTIONS</b></div>
+  <div class="card-body">
+    <related-products [departmentId]="prodDetail.departmentId" [productId]="prodDetail.itemGroupId"></related-products>
+  </div>
+  <div class="card-header"><b>RECENTLY VIEWED</b></div>
+  <div class="card-body">
+    <recently-viewed [productId]="prodDetail.itemGroupId"></recently-viewed>
+  </div>
+  <div *ngIf="prodSizes.length > 0" class="card-header"><b>AVAILABLE SIZES</b></div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div *ngIf="prodSizes.length > 0">
+        Euro <span *ngFor="let SizeList of productSizes; let last=last">
+          <span *ngIf="SizeList.quantity > 0">{{ SizeList.sizeDesc }} ({{ SizeList.trackingId }})<span *ngIf="!last">; </span> </span>
+        </span>
+      </div>
+    </li>
+  </ul>
+  <div *ngIf="prodSizes.length <= 0" class="card-header"><b>AVAILABLE SIZES</b></div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div *ngIf="prodSizes.length <= 0">
+        <span *ngIf="prodDetail.trackingId!=null && prodSizes.length <= 0">{{prodDetail.trackingId}}</span>
+      </div>
+    </li>
+  </ul>
+</div>

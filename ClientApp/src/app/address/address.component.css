@@ -1,0 +1,13 @@
+.primaryColor {
+    color: #8cd2eb;
+}
+
+.size {
+    line-height: 20px;
+    font-size: large;
+}
+
+.list {
+    vertical-align: top;
+    line-height: 16px;
+}

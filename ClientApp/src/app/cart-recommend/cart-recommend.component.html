@@ -1,0 +1,33 @@
+
+<div class="text-center"><h3><b>Shop More Items</b></h3></div>
+<div class="row row-cols-md-3 row-cols-sm-12">
+    <p *ngIf="!related"><em>Loading...</em></p>
+    <div class="col" *ngFor="let item of related">
+        <div class="card mb-2">
+            <div class="card-img-actions">
+              <a [routerLink]="['/product', item.urlId]" (click)="sendClickEvent(item.title, item.internetPrice)">
+                <img class="card-img img-fluid" src="{{ item.imageUrl }}" class="img" alt="{{ item.title }}" />
+              </a>
+            </div>
+            <div class="card-body mb-0">
+              <a [routerLink]="['/product', item.urlId]"> <span class="producttitle">{{item.title}}</span></a>
+              <br />
+              <div class="my-0">
+                <span class="currency ">{{item.internetPrice | currency:'₦' :'symbol':'3.2'}}</span>
+              </div><br />
+              <div class="my-0 iK">
+                <div class="mt-2">
+                  <a [routerLink]="['/product', item.urlId]" style="color: white;" class="btn btn-sm btn-success">Buy Now </a> 
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+<div class="row">
+    <div class="cb col-12 mb-5">
+        <a class="btn btn-outline-secondary btn-sm mb-2" [routerLink]="['/category', '70610-Men-Shoes']">Shop More Men Shoes</a><br>
+        <a class="btn btn-outline-secondary btn-sm mb-2" [routerLink]="['/category', '70710-Women-Shoes']">Shop More Women Shoes</a><br>
+        <a class="btn btn-outline-secondary btn-sm mb-2" [routerLink]="['/category', '70340-Assessories']">Shop More Accessories</a> <br>
+    </div>
+</div>

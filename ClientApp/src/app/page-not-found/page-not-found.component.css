@@ -1,0 +1,30 @@
+a.filter:link {
+    text-decoration: none;
+    color: black;
+    font-size: 10pt;
+    font-weight:normal;
+  }
+
+  a.filter:visited {
+    text-decoration: none;
+    color: black;
+    font-size: 10pt;
+    font-weight: normal;
+  }
+
+  a.filter:hover {
+    text-decoration: underline;
+    color: blue;
+    font-size: 10pt;
+    font-weight: normal;
+  }
+
+  a.filter:active {
+    text-decoration: none;
+    color: black;
+    font-size: 10pt;
+    font-weight: normal;
+  }
+ /* ul span {
+     list-style-type: none;
+ } */

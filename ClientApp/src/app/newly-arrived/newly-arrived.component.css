@@ -1,0 +1,44 @@
+img{
+    width:100%;
+    height:auto;
+    margin: 0px;
+    padding: 0%;
+  }
+  .card{
+    width: 100%;
+    max-height: fit-content;
+    margin-right: 2px;
+    border-style: none;
+  }
+  .NASpread{
+    min-width: 200px;
+    margin-top:5px;
+  }
+  .whatsApp{
+    width: 25px;
+    height: 25px;
+  }
+
+  .dept {
+    color: blue;
+  }
+
+  .card:hover{
+    border-color: #eee;
+    box-shadow: 0 0 11px #888;
+    -moz-box-shadow: 0 0 11px #888;
+    -khtml-box-shadow: 0 0 11px #888;
+    -webkit-box-shadow: 0 0 11px #888;
+    -o-box-shadow: 0 0 11px #888;
+    -ms-box-shadow: 0 0 11px #888;
+  }
+  
+  @media only screen and (max-width:990px)  {
+    .card-title {
+      font-size: 10px;
+    }
+    h6 {
+      font-size: 10px;
+    }
+
+  }

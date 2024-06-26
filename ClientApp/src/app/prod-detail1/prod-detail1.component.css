@@ -1,0 +1,54 @@
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+.sizeguide {
+  float: right;
+}
+
+.sizeguide:hover {
+  cursor: pointer;
+}
+
+.currency {
+  /* float: right; */
+  font-size: 15pt;
+  color: orangered;
+  font-weight: bold;
+  text-align: justify;
+}
+
+.oldPrice {
+  font-size: 12pt;
+  /* float: left; */
+  text-decoration: line-through;
+  color: #000;
+  font-weight: 700;
+}
+
+.currencycenter {
+  float: none;
+  font-size: 15pt;
+  color: orangered;
+  font-weight: bold;
+  text-align: center;
+}
+
+.mat-select-content {
+  min-width: 250px;
+  max-width: 350px;
+}
+
+.errortext {
+  color: #ff0000;
+}
+
+.hidden {
+  display: none;
+}

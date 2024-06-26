@@ -1,0 +1,28 @@
+<!-- <div *ngIf="reviews.length<=0">
+<p>No reviews yet!</p>
+</div> -->
+
+<div class="list-group" *ngIf="reviews.length>0" >
+  <p><strong>Rated {{averageRating |number:'1.1-1'}}/5 ({{reviews.length}} verified reviews)</strong> </p>
+    <!-- <h4><strong>COMMENTS FROM VERIFIED PURCHASES ({{reviews.length}})</strong></h4> -->
+    <ng-container *ngFor="let list of reviews">
+        <div class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <span>
+                <h4 class="mb-1"><strong>{{list.reviewTitle}} </strong>
+                <span class="rate" *ngIf="list.rating==1"><i class="bi bi-star-fill">&#9733;</i> </span>
+                <span class="rate" *ngIf="list.rating==2"><i class="bi bi-star-fill">&#9733;</i> <i class="bi bi-star-fill">&#9733;</i></span>
+                <span class="rate" *ngIf="list.rating==3"><i class="bi bi-star-fill">&#9733;</i> <i class="bi bi-star-fill">&#9733;</i> <i class="bi bi-star-fill">&#9733;</i></span>
+                <span class="rate" *ngIf="list.rating==4"><i class="bi bi-star-fill">&#9733;</i> <i class="bi bi-star-fill">&#9733;</i> <i class="bi bi-star-fill">&#9733;</i> <i class="bi bi-star-fill">&#9733;</i></span>
+                <span class="rate" *ngIf="list.rating==5"><i class="bi bi-star-fill">&#9733;</i> <i class="bi bi-star-fill">&#9733;</i> <i class="bi bi-star-fill">&#9733;</i> <i class="bi bi-star-fill">&#9733;</i> <i class="bi bi-star-fill">&#9733;</i></span>
+              </h4> 
+            </span> 
+          </div>
+          <pre class="mb-1">{{list.fullReview}}</pre>
+          <small *ngIf="list.customerGsm!='07036110000'" >{{list.addedDate|date}} by {{list.reviewerName}}</small>
+          <small *ngIf="list.isCustomer==true" class="verify"><i class="bi bi-check2-circle"></i> Verified Purchase</small>
+          <!-- <small *ngIf="list.isCustomer==false" class="verify"><i class="bi bi-patch-check-fill"></i> Expert Review</small> -->
+          <app-rep [list]="list"></app-rep>
+        </div>
+    </ng-container>
+  </div>

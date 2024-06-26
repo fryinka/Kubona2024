@@ -1,0 +1,31 @@
+a:link {
+  text-decoration: none;
+  color:navy;
+  font-size: 10pt;
+  font-weight: normal;
+}
+
+a:visited {
+  text-decoration: none;
+  color: navy;
+  font-size: 10pt;
+  font-weight:normal;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: gray;
+  font-size: 10pt;
+  font-weight: normal;
+}
+
+a:active {
+  text-decoration: none;
+  color: navy;
+  font-size: 10pt;
+  font-weight:normal;
+}
+.list-style {
+    vertical-align:middle;
+    background-color:lightgray;
+}

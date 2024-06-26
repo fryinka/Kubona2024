@@ -1,0 +1,135 @@
+.img {
+    width: 65px;
+    height: 65px;
+}
+.firstcolumn {
+    min-width:125px;
+}
+.title {
+ font-weight: 400 !important;
+  font-size: 20px !important;
+  color: #252525 !important;
+}
+.required {
+  color: Red;
+}
+.currencytext18 {
+  font-size: 18px;
+  color: #FF6400;
+  font-weight: 700;
+}
+.totalpadding {
+    padding-top:25px;
+    padding-bottom:25px;
+}
+.table>tbody>tr>td, .table>tfoot>tr>td{
+    vertical-align: middle;
+}
+.visible-xs{
+	display: none;
+}
+
+.cartForm, .w-100 {
+	width: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+a:hover{
+	text-decoration: underline;
+	color: blue;
+}
+
+
+  a.continue:link {
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  a.continue:visited {
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  a.continue:hover {
+    text-decoration: underline;
+    color: blue;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  a.continue:active {
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+
+
+  a.department:link {
+    text-decoration: none;
+    color: navy;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  a.department:visited {
+    text-decoration: none;
+    color: navy;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  a.department:hover {
+    text-decoration: underline;
+    color: navy;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  a.department:active {
+    text-decoration: none;
+    color: navy;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+
+
+@media screen and (max-width: 600px) {
+    table#cart tbody td .form-control{
+		width:30%;
+		display: inline !important;
+	}
+	.actions .btn{
+		width:36%;
+		margin: 0;
+	}
+	
+	
+	.actions .btn-danger{
+		float:left;
+		max-width: 30px;
+	}
+	
+	table#cart thead { display: none; }
+	table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+	table#cart tbody tr td:first-child { background: #fff; color: #333; }
+	table#cart tbody td:before {
+		content: attr(data-th); font-weight: bold;
+		display: inline-block; width: 8rem;
+	}
+	
+	
+	
+	table#cart tfoot td{display:block; }
+	table#cart tfoot td .btn{display:block;}
+	
+}

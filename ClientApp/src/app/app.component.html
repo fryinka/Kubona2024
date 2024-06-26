@@ -1,0 +1,11 @@
+<app-nav-menu></app-nav-menu>
+<mat-progress-spinner mode="indeterminate" *ngIf="loading$ |async"></mat-progress-spinner>
+<!-- <p *ngIf="!networkStatus$ |async">Internet disconnected</p> -->
+<div class="container new">
+  <!-- <app-ng-dynamic-breadcrumb [bgColor]="'#fcfcfc'" [fontSize]="'14px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'" [symbol]="' >'" (click)="sendClickEvent('breadcrumb')" ></app-ng-dynamic-breadcrumb> -->
+  <router-outlet></router-outlet>
+</div>
+<div class="foot">
+  <app-footer></app-footer>
+</div>
+<app-cookie-consent [cookiesEnabled]="cookiesEnabled"></app-cookie-consent>

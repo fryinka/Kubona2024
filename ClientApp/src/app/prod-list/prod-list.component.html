@@ -1,0 +1,114 @@
+<div class="container mb-5">
+  <div class="col-md-6 col-lg-6 col-sm-12 my-1 d-none d-md-block">
+    <button mat-button [matMenuTriggerFor]="categorymenu" style="padding: 10px; display: inline-block; cursor: pointer;"><mat-icon>arrow_drop_down_circle</mat-icon> Select Category</button>
+    <mat-menu #categorymenu="matMenu">
+      <mat-nav-list>
+        <mat-list-item *ngFor="let DeptGrp of deptGrplist">
+          <a [routerLink]="['/category',DeptGrp.destinationUrl]" class="filter"
+            (click)="sendFilterClickEvent(DeptGrp.description)">{{ DeptGrp.description }} ({{ DeptGrp.totalCount }})</a>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-menu>
+  </div>
+  <div class="filterNav d-md-none" style="max-height: 65px;">
+    <span *ngIf="!prodImages">loading...</span>
+    <ng-image-slider #nav [images]="prodImages" [infinite]="true" [autoSlide]="0" [imagePopup]="false" [showArrow]="false"
+      [imageSize]="{width:60, height:60}" [animationSpeed]="0.3" slideImage="3" [defaultActiveImage]="0"
+      (imageClick)="openLink($event)"></ng-image-slider>
+  </div>
+
+  <div class="row mb-5 bg-light">
+    <div class="col-md-4 col-lg-4 col-6 my-1">
+      <a mat-button [matMenuTriggerFor]="sizemenu"><mat-icon>expand_more</mat-icon>
+        Select Size</a>
+      <mat-menu #sizemenu="matMenu">
+        <div *ngFor="let SizeGrp of sizeGrplist">
+          <a mat-menu-item [routerLink]="['/category',SizeGrp.destinationUrl]" queryParamsHandling="merge"
+            class="filter" (click)="sendFilterClickEvent('size')">{{ SizeGrp.sizeDesc }} ({{ SizeGrp.totalcount }})</a>
+
+        </div>
+      </mat-menu>
+    </div>
+    <div class="col-md-4 col-lg-4 col-6 my-1">
+      <a mat-button [matMenuTriggerFor]="colormenu"><mat-icon>expand_more</mat-icon>
+        Select Color</a>
+      <mat-menu #colormenu="matMenu">
+        <div *ngFor="let ColorGrp of colorGrplist">
+          <a mat-menu-item [routerLink]="['/category',ColorGrp.destinationUrl]" queryParamsHandling="merge"
+            class="filter" (click)="sendFilterClickEvent('color')">{{ ColorGrp.colorDesc }} ({{ ColorGrp.totalcount
+            }})</a>
+
+        </div>
+      </mat-menu>
+    </div>
+    <div class="col-md-4 col-lg-4 col-6 my-1">
+      <a mat-button [matMenuTriggerFor]="stylemenu"><mat-icon>expand_more</mat-icon>
+        Select Style</a>
+      <mat-menu #stylemenu="matMenu">
+        <div *ngFor="let StyleGrp of styleGrplist">
+          <a mat-menu-item [routerLink]="['/category',StyleGrp.destinationUrl]" queryParamsHandling="merge"
+            class="filter" (click)="sendFilterClickEvent('style')">{{ StyleGrp.styleDesc }} ({{ StyleGrp.totalcount
+            }})</a>
+
+        </div>
+      </mat-menu>
+    </div>
+    <div *ngIf="heelGrplist.length>0" class="col-md-4 col-lg-4 col-6 my-1">
+      <a mat-button [matMenuTriggerFor]="heelmenu"><mat-icon>expand_more</mat-icon>
+        Heel Height</a>
+      <mat-menu #heelmenu="matMenu">
+        <div *ngFor="let heel of heelGrplist">
+          <a mat-menu-item [routerLink]="['/category',heel.destinationUrl]" queryParamsHandling="merge" class="filter"
+            (click)="sendFilterClickEvent('heel')">{{ heel.heelHeightDesc }} ({{ heel.totalcount }})</a>
+        </div>
+      </mat-menu>
+    </div>
+    <div class="col-md-4 col-lg-4 col-6 my-1">
+      <a mat-button [matMenuTriggerFor]="materialmenu"><mat-icon>expand_more</mat-icon>
+        Select Material</a>
+      <mat-menu #materialmenu="matMenu">
+        <div *ngFor="let mat of materialGrplist">
+          <a mat-menu-item [routerLink]="['/category',mat.destinationUrl]" queryParamsHandling="merge" class="filter"
+            (click)="sendFilterClickEvent('material')">{{ mat.materialDesc }} ({{ mat.totalcount }})</a>
+        </div>
+      </mat-menu>
+    </div>
+    <div class="col-md-4 col-lg-4 col-6 my-1">
+      <a mat-button [matMenuTriggerFor]="sortmenu"><mat-icon>expand_more</mat-icon> Sort Results By:</a>
+      <mat-menu #sortmenu="matMenu">
+        <div class="m-2 p-2">
+          <a [routerLink]="['/category', urlId, 2]" class="filter" (click)="sendFilterClickEvent('high_price')">High
+            Price</a><br />
+          <a [routerLink]="['/category', urlId, 3]" class="filter" (click)="sendFilterClickEvent('low_price')">Low
+            Price</a><br />
+          <a [routerLink]="['/category', urlId, 5]" class="filter"
+            (click)="sendFilterClickEvent('title')">Title</a><br />
+          <a [routerLink]="['/category', urlId, 0]" class="filter"
+            (click)="sendFilterClickEvent('popular')">Popular</a><br />
+          <a [routerLink]="['/category', urlId, 7]" class="filter"
+            (click)="sendFilterClickEvent('newest')">Newest</a><br />
+          <a [routerLink]="['/category', urlId, 4]" class="filter"
+            (click)="sendFilterClickEvent('randomly')">Randomly</a> <br>
+          <!--<ng-container *ngFor="let list of priceRangelist">
+            <a [routerLink]="['/category',list.destinationUrl]" queryParamsHandling="merge" class="filter" (click)="sendFilterClickEvent('price_range')" >Price {{ list.desc }}</a> <br>
+          </ng-container>-->
+        </div>
+      </mat-menu>
+    </div>
+  </div>
+  <h3 *ngIf="title">Showing results for {{title}}</h3>
+  <p *ngIf="prodlists.length<=0"><em>Loading...</em></p>
+
+  <div class="row row-cols-md-3 row-cols-sm-12" style="min-height: 100vh;">
+    <div *ngIf="!prodlists" class="d-flex justify-content-center spinner-border text-dark" role="status">
+      <span class="visually-hidden"> <em>Loading...</em> </span>
+    </div>
+    <div class="col" *ngFor="let Prodlist of prodlists">
+      <single-prod [Prodlist]="Prodlist"></single-prod>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button mat-raised-button class="btn-w-md" color="primary" (click)="loadMore()" [disabled]="disableLoadMoreButton">
+      Load More Available Products</button>
+  </div>
+</div>

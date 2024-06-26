@@ -1,0 +1,15 @@
+/* .cookiesConsent{
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    margin:0;
+    } */
+
+    .card{
+        text-align: center;
+        position:sticky;
+        position: -webkit-sticky;
+    }

@@ -1,0 +1,58 @@
+<!-- <h3>Shoe size Calculator</h3> -->
+<div class="card">
+    <div class="card-header">
+        <div class="card-title title"> Shoe Size Converter</div>
+    </div>
+    <div class="card-body">
+        <p>Use the Calculator below to convert your shoe size to Euro</p>
+        <div class="main">
+            <div class="convert mb-3">
+                <select class="form-control" (change)="selectGender($event)">
+                    <option selected="my" disabled>Select Gender</option>
+                    <option value="70610">Men</option>
+                    <option value="70710">Women</option>
+                </select>
+            </div>
+            <div class="convert mb-3">
+                <select class="form-control my-2" (change)="selectStandard($event)">
+                    <option selected="my">Select Unit (US or UK)</option>
+                    <option value="US">US</option>
+                    <option value="UK">UK</option>
+                </select>
+
+                <select class="form-control my-2" (change)="selectSize($event)">
+                    <option selected="my" disabled>Select Your Size</option>
+                    <option *ngFor="let state of sizeCat" [value]="state.value">
+                        <span>{{ state.value }}</span>
+                    </option>
+                </select>
+                <select class="form-control my-2" (change)="selectFit($event)">
+                    <option selected="my" disabled>How wide is your feet?</option>
+                    <option value="wide">Wide</option>
+                    <option value="narrow">Narrow</option>
+                </select>
+            </div>
+            <div class="arrow">
+                <p class="big">&#8595;</p>
+            </div>
+            <div class="convert mb-3">
+                <input class="form-control mb-3" type="text" placeholder="Converted Shoe Size" [(ngModel)]="message"
+                    disabled />
+            </div>
+            <div *ngIf="result" class="convert my-2">
+                <hr />
+            </div>
+            <div class="convert my-2" *ngIf="result">
+                <span class="bg-info">
+                    <p class="mr-2">
+                        {{ gender }} size <b>{{ size }} {{ standard }}</b> = {{ gender }}
+                        size <b>{{ result }} {{ newStandard }}</b>
+                        <a class="btn btn-sm btn-outline-primary mx-3" [routerLink]="['/category', url]">Shop size
+                            {{ result }} {{ gender }} Shoes</a>
+                    </p>
+                </span>
+
+            </div>
+        </div>
+    </div>
+</div>

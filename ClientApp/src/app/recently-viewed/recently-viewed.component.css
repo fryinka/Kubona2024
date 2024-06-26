@@ -1,0 +1,40 @@
+img {
+  width: 105px;
+  height: 105px;
+}
+
+.grid-item {
+  width: 105px;
+  margin-bottom: 0px;
+}
+
+.grid-item--width2 {
+  width: 115px;
+}
+
+.centerAlign {
+  text-align: center;
+}
+
+.currency {
+  font-size: 11px;
+  color: black;
+  font-weight: normal;
+  text-align: justify;
+}
+
+a {
+  text-decoration: none;
+}
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  a:visited {
+    text-decoration: none;
+  }
+
+  a:active {
+    text-decoration: none;
+  }

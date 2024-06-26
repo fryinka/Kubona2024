@@ -1,0 +1,170 @@
+<p *ngIf="!prodDetail"><em>Loading...</em></p>
+
+
+<!-- Material Design for Mobile -->
+<div class="card">
+  
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="card-img clsHeight">
+        <ng-image-slider #nav [images]="prodImages" [infinite]="true" [autoSlide]="0"
+        [imageSize]="{width:250, height:250}" [animationSpeed]="1" slideImage="1" lazyLoading="true"></ng-image-slider>
+      </div>
+    </li>
+    <div class="card-header">
+      <div class="card-title title"><span *ngIf="!prodDetail">Loading...</span>{{title }}</div>
+      <!-- <div>
+        <p *ngIf="prodSizes.length>0" class="availablesizes">Available Sizes: Euro <span
+            *ngFor="let SizeList of prodSizes; let isLast = last"><span *ngIf="SizeList.quantity > 0">{{ SizeList.sizeDesc}}, </span> </span><span *ngIf="!prodDetail">Loading...</span></p>
+      </div> -->
+    </div>
+    <li class="list-group-item d-flex flex-column">
+      <div class="oldPrice"><span *ngIf="!prodDetail">Loading...</span>{{ prodDetail.storePrice | currency:'₦' :'symbol':'3.2'}}</div>
+      <div class="currency"><span *ngIf="!prodDetail">Loading...</span>{{ prodDetail.internetPrice | currency:'₦' :'symbol':'3.2'}}</div>
+    </li>  
+  </ul>
+  
+
+  <div *ngIf="prodSizes.length > 0" class="card-header"><b>AVAILABLE SIZES</b></div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div *ngIf="prodSizes.length > 0">
+        Euro <span *ngFor="let SizeList of productSizes; let last = last">
+          <span *ngIf="SizeList.quantity > 0">{{ SizeList.sizeDesc }}<small> ({{ SizeList.trackingId }}){{last ? '' : ';'}} </small> </span>
+        </span>
+
+        <small><a class="sizeguide" (click)="openPopup()">Size Guide</a></small>
+        <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <app-size-converter></app-size-converter>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="closePopup()">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div>
+        <other-colors [similarId]="prodDetail.similarId" [productId]="prodDetail.itemGroupId"></other-colors>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="text-center">
+        <div class="my-2 currencycenter">
+          {{ prodDetail.internetPrice | currency:'₦' :'symbol':'3.2'}}
+        </div>
+        <div>
+          <form [formGroup]="addToOrderForm" (ngSubmit)="check()">
+            <div class="content-center" *ngIf="otherColors.length > 1">
+              <div>
+                <mat-form-field class="mat-select-content">
+                  <mat-label>Select Color</mat-label>
+                  <mat-select placeholder="Please select Exact Color Needed" formControlName="color" required>
+                    <mat-option>Please select Exact Color Needed</mat-option>
+                    <mat-option *ngFor="let item of otherColors" [value]="item.productId"
+                      (click)="getProdSizes(item.productId)">
+                      {{item.title}}
+                    </mat-option>
+                  </mat-select>
+                  <!-- <mat-error *ngIf="checkoutForm.hasError('required')" class="mt-2" style="color: #ff0000;">{{Error}}</mat-error> -->
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="content-center" *ngIf="prodSizes.length > 0">
+              <div>
+                <mat-form-field class="mat-select-content">
+                  <mat-label>Select Size</mat-label>
+                  <mat-select placeholder="Please select Exact Size Needed" formControlName="size" required>
+                    <mat-option>Please select Exact Size Needed</mat-option>
+                    <mat-option *ngFor="let SizeList of prodSizes" [value]="SizeList.itemGroupSizeId"
+                      [disabled]="SizeList.quantity <= 0" >
+                      <span *ngIf="SizeList.quantity > 0">{{ SizeList.sizeDesc }} <span *ngIf="SizeList.quantity == 1">- Last 1 left</span> </span>
+                      <span *ngIf="SizeList.quantity <= 0">{{ SizeList.sizeDesc }} - NOT AVAILABLE</span>
+                    </mat-option>
+                  </mat-select>
+                  <!-- <mat-error *ngIf="checkoutForm.hasError('required')" class="mt-2" style="color: #ff0000;">{{Error}}</mat-error> -->
+
+                </mat-form-field>
+              </div>
+            </div>
+            <div *ngIf="prodSizes.length <= 0">
+              <mat-form-field class="mat-select-content">
+                <mat-select [(ngModel)]="itemgroupSizeId" formControlName="size">
+                  <mat-option [value]="0" [selected]>
+                    {{ prodDetail.trackingId }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="content-center d-grid gap-2" *ngIf="prodDetail.numAvailable > 0">
+              <button type="submit" class="btn btn-dark my-2" *ngIf="networkStatus">
+                ADD TO BAG
+              </button>
+              <div *ngIf="!networkStatus">
+                <mat-label><b class="errortext">INTERNET CONNECTION LOST!</b></mat-label>
+              </div>
+              <p>Payment on Delivery</p>
+            </div>
+            <span class="mt-2 errortext" *ngIf="addToOrderForm.invalid">{{Error}}</span>
+            <div *ngIf="prodDetail.numAvailable <= 0">
+              <mat-label><b>PRODUCT IS NO LONGER AVAILABLE</b></mat-label>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="card-header">
+    <b>MORE PRODUCT INFORMATION</b>
+  </div>
+
+  <div class="card-body">
+    <div class="d-flex justify-content-center my-2" *ngIf="prodDetail.youTubeId">
+  
+      <iframe width="250" height="158" [src]="youTubeId" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
+    </div>
+    <hr />
+    <div>{{ prodDetail.description }}</div>
+    <hr />
+  </div>
+  <div class="card-header">
+    <b>PAYMENT AND DELIVERY INFORMATION</b>
+  </div>
+  <div class="card-body descTerms">
+    <div>
+      <ul>
+        <li>FREE Nationwide Delivery.</li>
+        <li>Payment on Delivery Nationwide except for the following states where you pay before delivery: Bauchi, Benue, Borno, Delta, Ebonyi, Katsina, Kebbi, Nasarawa and Yobe state</li>
+        <li>Delivery takes 1-3 Business days within Lagos. 3-7 Business days other locations.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-header" *ngIf="reviews.length > 0"><b>VERIFIED FEEDBACK</b></div>
+  <div class="card-body"*ngIf="reviews.length > 0">
+    <app-reviews [productId]="prodDetail.itemGroupId"
+      (mouseenter)="sendReviewFocusEvent(prodDetail.title, prodDetail.internetPrice)"></app-reviews>
+  </div>
+  <div class="card-header"><b>RELATED SUGGESTIONS</b></div>
+  <div class="card-body" style="min-height: 60px;">
+    <related-products [departmentId]="prodDetail.departmentId" [productId]="prodDetail.itemGroupId"></related-products>
+  </div>
+  <!-- <div class="card-header">
+    <b>RELATED LINKS</b>
+  </div>
+  <div>
+    <menu-links [departmentId]="prodDetail.departmentId"></menu-links>
+  </div> -->
+  <div class="card-header"><b>RECENTLY VIEWED</b></div>
+  <div class="card-body" style="min-height: 60px;">
+    <recently-viewed [productId]="prodDetail.itemGroupId"></recently-viewed>
+  </div>
+</div>

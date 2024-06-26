@@ -1,0 +1,25 @@
+<div class="text-center"><h3><b>My Browsing History</b></h3></div>
+<div class="row row-cols-md-3 row-cols-sm-12">
+    <p *ngIf="!recentlyViewed"><em>Loading...</em></p>
+    <div class="col" *ngFor="let Prodlist of recentlyViewed">
+        <div class="card mb-2">
+            <div class="card-img-actions">
+              <a [routerLink]="['/product', buildDestinationUrl(Prodlist.title,Prodlist.itemId)]"  (click)="sendProductClickEvent(Prodlist.itemId)">
+                <img class="card-img img-fluid" [src]="Prodlist.imageUrl" [alt]="Prodlist.title" />
+              </a>
+            </div>
+            <div class="card-body mb-0">
+              <a [routerLink]="['/product', buildDestinationUrl(Prodlist.title,Prodlist.itemId)]"  (click)="sendProductClickEvent(Prodlist.itemId)"> <span class="producttitle">{{Prodlist.title}}</span></a>
+              <br />
+              <div class="my-0">
+                <span class="currency ">{{Prodlist.internetPrice | currency:'₦' :'symbol':'3.2'}}</span>
+              </div><br />
+              <div class="my-0 iK">
+                <div class="mt-2">
+                  <a [routerLink]="['/product', buildDestinationUrl(Prodlist.title,Prodlist.itemId)]" style="color: white;" class="btn btn-sm btn-success"(click)="sendProductClickEvent(Prodlist.itemId)">Buy Now </a> 
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>

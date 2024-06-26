@@ -1,0 +1,19 @@
+<p *ngIf="!otherColors"><em>Loading...</em></p>
+<div class="row">
+  <div class="col-12">
+  <b *ngIf="otherColors.length>0">{{otherColors.length}} other Color(s)</b> <br />
+  <b *ngIf="otherColors.length<=0" class="text-center">NO OTHER COLORS</b> <br />
+</div>
+<div>
+  <div  *ngFor="let item of otherColors">
+    <div class="other mx-1">
+      <a [routerLink]="['/product', item.urlId]" (click)="sendItemClickEvent(item.title, item.internetPrice)">
+        <figure class="text-center">
+          <img src="{{ item.mobileImageUrl }}" alt="item.title"/>
+          <figcaption>{{ item.title }}</figcaption>
+        </figure>
+      </a>
+    </div>
+  </div>
+</div>
+</div>

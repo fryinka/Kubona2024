@@ -1,0 +1,106 @@
+button {
+  margin: 3px !important;
+}
+
+
+a.filter:link {
+  text-decoration: none;
+  color: black;
+  font-size: 10pt;
+  font-weight: normal;
+}
+
+a.filter:visited {
+  text-decoration: none;
+  color: black;
+  font-size: 10pt;
+  font-weight: normal;
+}
+
+a.filter:hover {
+  text-decoration: underline;
+  color: blue;
+  font-size: 10pt;
+  font-weight: normal;
+}
+
+a.filter:active {
+  text-decoration: none;
+  color: black;
+  font-size: 10pt;
+  font-weight: normal;
+}
+
+/* Adjust styling for the chip container */
+.chips-container {
+  display: flex;
+  overflow-x: auto;
+  /* Enable horizontal scrolling */
+  max-width: 100%;
+  /* Allow the container to expand as needed */
+}
+
+/* Apply styling to each chip item */
+.chip-item {
+  flex-shrink: 0;
+  /* Prevent chips from shrinking */
+  margin-right: 8px;
+  /* Add spacing between chips */
+}
+
+/* Style for selected chip */
+.selected-chip {
+  background-color: #000000;
+  /* Change the color to your preferred style */
+  color: #ffffff;
+  /* Change the text color for better visibility */
+  font-size: 10px;
+  padding: 4px 8px;
+  margin: 2px
+}
+
+.custom-chip {
+  cursor: pointer;
+  font-size: 12px;
+  padding: 4px 8px;
+  margin: 2px
+}
+
+@media only screen and (max-width:990px) {
+
+  a.filter:link {
+    text-decoration: none;
+    color: black;
+    font-size: 10pt;
+    font-weight: normal;
+  }
+
+  a.filter:visited {
+    text-decoration: none;
+    color: black;
+    font-size: 10pt;
+    font-weight: normal;
+  }
+
+  a.filter:hover {
+    text-decoration: underline;
+    color: blue;
+    font-size: 10pt;
+    font-weight: normal;
+  }
+
+  a.filter:active {
+    text-decoration: none;
+    color: black;
+    font-size: 10pt;
+    font-weight: normal;
+  }
+
+  .chips-container {
+    flex-wrap: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+}
